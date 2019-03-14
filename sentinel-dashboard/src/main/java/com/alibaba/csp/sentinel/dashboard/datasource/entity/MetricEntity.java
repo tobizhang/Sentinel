@@ -15,36 +15,58 @@
  */
 package com.alibaba.csp.sentinel.dashboard.datasource.entity;
 
+import org.influxdb.annotation.Column;
+import org.influxdb.annotation.Measurement;
+
 import java.util.Date;
 
 /**
  * @author leyou
  */
+@Measurement(name = "sentinel_metric",database = "sentinel")
 public class MetricEntity {
+    @Column(name = "id")
     private Long id;
+    //@Column(name = "gmtCreate")
     private Date gmtCreate;
+    @Column(name = "gmtCreateLong")
+    private Long gmtCreateLong;
+    //@Column(name = "gmtModified")
     private Date gmtModified;
+    @Column(name = "gmtModifiedLong")
+    private Long gmtModifiedLong;
+    @Column(name = "app")
     private String app;
     /**
      * 监控信息的时间戳
      */
+    //@Column(name = "timestamp")
     private Date timestamp;
+    @Column(name = "timestampLong")
+    private Long timestampLong;
+    @Column(name = "resource")
     private String resource;
+    @Column(name = "passQps")
     private Long passQps;
+    @Column(name = "successQps")
     private Long successQps;
+    @Column(name = "blockQps")
     private Long blockQps;
+    @Column(name = "exceptionQps")
     private Long exceptionQps;
 
     /**
      * summary rt of all success exit qps.
      */
+    @Column(name = "rt")
     private double rt;
 
     /**
      * 本次聚合的总条数
      */
+    @Column(name = "count")
     private int count;
-
+    @Column(name = "resourceCode")
     private int resourceCode;
 
     public static MetricEntity copyOf(MetricEntity oldEntity) {
@@ -62,6 +84,9 @@ public class MetricEntity {
         entity.setRt(oldEntity.getRt());
         entity.setCount(oldEntity.getCount());
         entity.setResource(oldEntity.getResource());
+        entity.setGmtCreateLong(oldEntity.getGmtCreateLong());
+        entity.setGmtModifiedLong(oldEntity.getGmtModifiedLong());
+        entity.setTimestampLong(oldEntity.getTimestampLong());
         return entity;
     }
 
@@ -196,6 +221,30 @@ public class MetricEntity {
 
     public void setSuccessQps(Long successQps) {
         this.successQps = successQps;
+    }
+
+    public Long getGmtCreateLong() {
+        return gmtCreateLong;
+    }
+
+    public void setGmtCreateLong(Long gmtCreateLong) {
+        this.gmtCreateLong = gmtCreateLong;
+    }
+
+    public Long getGmtModifiedLong() {
+        return gmtModifiedLong;
+    }
+
+    public void setGmtModifiedLong(Long gmtModifiedLong) {
+        this.gmtModifiedLong = gmtModifiedLong;
+    }
+
+    public Long getTimestampLong() {
+        return timestampLong;
+    }
+
+    public void setTimestampLong(Long timestampLong) {
+        this.timestampLong = timestampLong;
     }
 
     @Override
