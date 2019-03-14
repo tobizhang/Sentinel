@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2018 Alibaba Group Holding Ltd.
+ * Copyright 1999-2019 Alibaba Group Holding Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,27 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.csp.sentinel.slots.statistic;
+package com.alibaba.csp.sentinel.slots.statistic.metric;
 
 /**
  * @author Eric Zhao
+ * @since 1.5.0
  */
-public enum MetricEvent {
+public interface DebugSupport {
 
     /**
-     * Normal pass.
+     * For debug;
      */
-    PASS,
-    /**
-     * Normal block.
-     */
-    BLOCK,
-    EXCEPTION,
-    SUCCESS,
-    RT,
-
-    /**
-     * Passed in future quota (pre-occupied, since 1.5.0).
-     */
-    OCCUPIED_PASS
+    void debug();
 }
