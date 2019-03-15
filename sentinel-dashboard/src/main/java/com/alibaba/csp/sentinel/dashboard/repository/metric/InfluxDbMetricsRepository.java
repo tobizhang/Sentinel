@@ -26,7 +26,6 @@ import org.influxdb.impl.InfluxDBResultMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -99,19 +98,6 @@ public class InfluxDbMetricsRepository implements MetricsRepository<MetricEntity
             x.setTimestamp(new Date(x.getTimestampLong()));
         });
         return results;
-    }
-
-    /**
-     * 根据属性名set属性值
-     */
-    private void setFieldValueByName(String fieldName, Object o, Object value) {
-        try {
-            Field f = o.getClass().getDeclaredField(fieldName);
-            f.setAccessible(true);
-            f.set(o, value);
-        } catch (Exception e) {
-
-        }
     }
 
 
